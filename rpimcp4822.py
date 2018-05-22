@@ -1,7 +1,7 @@
 '''
 rpimcp4822.py
 Author: Mike Willems
-Last Revision: 2018.05.17
+Last Revision: 2018.05.21
 Description: This class extends spidev for working with the Microchip MCP4822 DAC specifically with
 a Raspberry Pi model 3B using the spidev library. It may work with other versions, but please double
 check the BroadCom (BCM) pin numbering before using.
@@ -65,6 +65,6 @@ class RPiMCP4822(spidev.SpiDev):
 
     def cleanup():
         self.close()
-        if(self.output_latch_pin):
+        if(self.output_latch_pin > -1):
             GPIO.output(self.output_latch_pin, GPIO.LOW)
-        GPIO.cleanup()
+            GPIO.cleanup()
